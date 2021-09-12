@@ -10,14 +10,25 @@ const convertSecondToTime = (seconds) => {
     }
     return m + ":" + s;
 }
-
+var stopAll = [];
 const stopWatchApp = document.getElementById('myStopWatch');
 
 const btnAddMore = document.getElementById('btnAddMore')
 btnAddMore.addEventListener('click',() =>{
     const newStopWatchApp = new StopWatch();
     stopWatchApp.appendChild(newStopWatchApp.$container);
+    stopAll.push(newStopWatchApp);
+});
+
+
+const btnStopAll=document.getElementById("btnStopAll");
+btnStopAll.addEventListener("click",()=>{
+    stopAll.forEach((element)=>{
+        element.handleStop();
+    })
 })
+
+
 class StopWatch {
     count = 0;
     interval;
